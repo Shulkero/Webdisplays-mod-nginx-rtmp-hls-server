@@ -1,38 +1,7 @@
-# nginx-rtmp-1.17.10-windows
+# WEBDISPLAYS MOD NGINX RTMP HLS SERVER
 
+Basically took a precompiled nginx with rtmp and added a hls player. This was made for Minecraft's Webdisplays mod:
 
-Autoconf settings
+Seems to work fine for this version --> https://www.curseforge.com/minecraft/mc-mods/webdisplays This is a pretty good nginx server for streaming any content on your computer to the webdisplays screen. With some program broadcasting like OBS, you can input a specific address: rtmp://ip:port/live, and then you can load the website on a browser (by default the stream key is just set to stream. You may need to set ports in the nginx.conf and the default url for the video player would be ip:port/viewer.html) I modified the code slightly so that whenever starting the stream every client that started more or less at the same time will have the very first frame paused and that frame will be the same for all of them. This way whenever all players /client have loaded the video can be unpaused and it will do so without any synchronization issues between clients. (without this pause the clients would have a delay between them dependent on each client's loading time)
 
-auto/configure \
-    --with-cc=cl \
-    --with-debug \
-    --prefix= \
-    --conf-path=conf/nginx.conf \
-    --pid-path=logs/nginx.pid \
-    --http-log-path=logs/access.log \
-    --error-log-path=logs/error.log \
-    --sbin-path=nginx.exe \
-    --http-client-body-temp-path=temp/client_body_temp \
-    --http-proxy-temp-path=temp/proxy_temp \
-    --http-fastcgi-temp-path=temp/fastcgi_temp \
-    --http-scgi-temp-path=temp/scgi_temp \
-    --http-uwsgi-temp-path=temp/uwsgi_temp \
-    --with-cc-opt=-DFD_SETSIZE=1024 \
-    --with-pcre=objs/lib/pcre-8.44 \
-    --with-zlib=objs/lib/zlib-1.2.11 \
-    --with-openssl=objs/lib/openssl-1.1.1d \
-    --with-openssl-opt=no-asm \
-    --with-http_ssl_module \
-    --with-http_flv_module \
-    --with-http_geoip_module \
-    --with-http_gzip_static_module \
-    --with-http_mp4_module \
-    --with-http_secure_link_module \
-    --with-http_slice_module \
-    --with-http_v2_module \
-    --with-mail \
-    --with-mail_ssl_module \
-    --with-stream \
-    --with-stream_ssl_module \
-    --add-module=nginx-rtmp-module \
-    
+Nice code to enjoy films with friends. :)
